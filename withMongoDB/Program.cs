@@ -1,5 +1,8 @@
 using withMongoDB.Models;
 using withMongoDB.Services;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
