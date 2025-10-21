@@ -11,9 +11,17 @@ namespace withMongoDB.Services
         public MoviesService(
             IOptions<MovieDatabaseSettings> movieDatabaseSettings
         ) 
-        { 
+        {
+            var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING") 
+                ?? movieDatabaseSettings.Value.ConnectionString;
+
+            if(connectionString is null)
+            {
+                throw new ArgumentNullException("Database connection string is not provided.");
+            }
+
             var mongoClient = new MongoClient(
-                movieDatabaseSettings.Value.ConnectionString
+                connectionString
             );
             var mongoDatabase = mongoClient.GetDatabase(
                 movieDatabaseSettings.Value.DatabaseName
