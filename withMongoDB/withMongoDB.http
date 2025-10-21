@@ -1,0 +1,41 @@
+@withMongoDB_HostAddress = http://localhost:5057/api
+
+GET {{withMongoDB_HostAddress}}/movies/
+Accept: application/json
+
+###
+
+@movieId = 68f770755c3ffaea3b8dc220
+GET {{withMongoDB_HostAddress}}/movies/{{movieId}}
+
+###
+
+POST {{withMongoDB_HostAddress}}/movies/
+Content-Type: application/json
+{
+  "Title": "Inception",
+  "Description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+  "Director": "Christopher Nolan",
+  "Year": 2010,
+  "Genre": "Science Fiction",
+  "Rating": 8.8
+}
+
+###
+
+@movieId = 68f770755c3ffaea3b8dc220
+PUT {{withMongoDB_HostAddress}}/movies/{{movieId}}
+Content-Type: application/json
+{
+  "Title": "Inception",
+  "Description": "A skilled thief is offered a chance to have his past crimes forgiven if he can successfully perform an inception.",
+  "Director": "Christopher Nolan",
+  "Year": 2010,
+  "Genre": "Science Fiction",
+  "Rating": 9.0
+}
+
+###
+
+@movieId = 68f770755c3ffaea3b8dc220
+DELETE {{withMongoDB_HostAddress}}/movies/{{movieId}}
